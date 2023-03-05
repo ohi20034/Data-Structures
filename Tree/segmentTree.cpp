@@ -3,7 +3,7 @@ using namespace std;
 #define int long long
 const int MAX = 1e5 + 10;
 int arr[MAX];
-int tree[MAX];
+int tree[MAX*4];
 
 void init(int node,int b, int e)
 {
