@@ -8,28 +8,23 @@ struct TrieNode
     TrieNode()
     {
         completedWord = false;
-        for(int i=0; i<26; ++i)
+        for (int i = 0; i < 26; ++i)
         {
             next[i] = NULL;
         }
     }
-}*root;
+} *root;
 
 void trieinsert(string s)
 {
     TrieNode *curr = root;
-    for(int i=0; i<s.size(); ++i)
+    for (int i = 0; i < s.size(); ++i)
     {
-        int x = s[i]-'a';
-        if(curr->next[x] == NULL)
-        {
+        int x = s[i] - 'a';
+        if (curr->next[x] == NULL)
             curr->next[x] = new TrieNode();
 
-        }
-        else
-        {
-            curr = curr->next[x];
-        }
+        curr = curr->next[x];
     }
     curr->completedWord = true;
 }
@@ -37,19 +32,20 @@ bool triesearch(string s)
 {
     TrieNode *curr = root;
 
-    for(int i=0; i<s.size(); ++i)
+    for (int i = 0; i < s.size(); ++i)
     {
-        int x = s[i]-'a';
+        int x = s[i] - 'a';
 
-        if(curr->next[x] == NULL)
+        if (curr->next[x] == NULL)
         {
             return false;
         }
+        curr = curr->next[x];
     }
     return curr->completedWord;
 }
 int main()
 {
-    root = new  TrieNode();
+    root = new TrieNode();
 
 }
