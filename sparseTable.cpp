@@ -1,38 +1,38 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-const int MAX = 100000;
-const int K = 20;
+const int MAX = 1e5+10;
+const int LOGMAX = 17;
+int n;
 int arr[MAX];
-int sp[K][MAX];
-
+int st[MAX][LOGMAX];
+void build()
+{
+    for(int k=1; k<LOGMAX; ++k)
+    {
+        for(int i=0; i+(1<<k)-1 < n; ++i)
+        {
+            st[i][k]=min(st[i][k-1],st[i+(1<<(k-1))][k-1]);
+        }
+    }
+}
+int query(int low,int high)
+{
+    int l = high-low+1;
+    int k = 0;
+    while((1<<(k+1))<= l)
+    {
+        k++;
+    }
+    return min(st[low][k],st[low+l-(1<<k)][k]);
+}
 int main()
 {
-    int n;
     cin >> n;
     for(int i=0; i<n; ++i)
     {
         cin >> arr[i];
+        st[i][0] = arr[i];
     }
-    for(int i=0; i<n; ++i)
-    {
-        sp[0][i] = arr[i];
-    }
-    for(int ien=1; ien<K; ++ien)
-    {
-        for(int j=st; st<n; ++st)
-        {
-            if(st + (1<<len) > n) break;
-            sp[len][st] =
-        }
-    }
-    // int k = 31 - __builtin_clz(n);
-    /*   int mn = n;
-       int log2 = 0;
-       while(mn > 1)
-       {
-           log2++;
-           mn /= 2;
-       } */
-
+    build();
 }
